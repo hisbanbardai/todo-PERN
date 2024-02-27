@@ -14,7 +14,7 @@ app.use(express.json());
 
 //ROUTES
 
-//get all todos
+//get all todos - using async/await
 app.get("/todos", async (req, res) => {
   try {
     const allToDos = await pool.query(`SELECT * FROM todo;`);
@@ -25,8 +25,19 @@ app.get("/todos", async (req, res) => {
 });
 
 //get a todo
+app.get("/todos/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const todo = await pool.query(`SELECT * FROM todo WHERE todo_id = $1`, [
+      id,
+    ]);
+    res.json(todo.rows[0]);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
 
-//create a todo
+//create a todo - using promises
 app.post("/todos", (req, res) => {
   const { description } = req.body;
   pool
