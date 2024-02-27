@@ -26,8 +26,8 @@ app.get("/todos", async (req, res) => {
 
 //get a todo
 app.get("/todos/:id", async (req, res) => {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     const todo = await pool.query(`SELECT * FROM todo WHERE todo_id = $1`, [
       id,
     ]);
@@ -49,6 +49,20 @@ app.post("/todos", (req, res) => {
 });
 
 //update a todo
+app.put("/todos/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { description } = req.body;
+
+    const updateToDo = await pool.query(
+      `UPDATE todo SET description = $1 WHERE todo_id = $2 RETURNING *`,
+      [description, id]
+    );
+    res.json(updateToDo.rows[0]);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
 
 //delete a todo
 
