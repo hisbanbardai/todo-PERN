@@ -60,11 +60,23 @@ app.put("/todos/:id", async (req, res) => {
     );
     res.json(updateToDo.rows[0]);
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
   }
 });
 
 //delete a todo
+app.delete("/todos/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleteToDo = await pool.query(
+      `DELETE FROM todo WHERE todo_id = $1 RETURNING *`,
+      [id]
+    );
+    res.json(deleteToDo);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
