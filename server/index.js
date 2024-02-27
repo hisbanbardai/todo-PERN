@@ -15,6 +15,14 @@ app.use(express.json());
 //ROUTES
 
 //get all todos
+app.get("/todos", async (req, res) => {
+  try {
+    const allToDos = await pool.query(`SELECT * FROM todo;`);
+    res.json(allToDos.rows);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
 
 //get a todo
 
