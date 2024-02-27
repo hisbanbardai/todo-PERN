@@ -8,5 +8,6 @@ const config = {
   port: process.env.DB_PORT,
 };
 const pool = new Pool(config);
+pool.connect();
 
 module.exports = pool;
