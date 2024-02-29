@@ -1,0 +1,24 @@
+.mainHeading {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.inputTodoForm {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.inputTodo {
+  font-size: 18px;
+  width: 400px;
+}
+
+.btnAdd {
+  font-size: 18px;
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 5px;
+}
