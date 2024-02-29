@@ -1,3 +1,5 @@
+import TodoInput from "./components/TodoInput/TodoInput";
+
 export default function App() {
-  return <h1>hello world</h1>;
+  return <TodoInput />;
 }
