@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import styles from "./TodoList.module.css";
+import Button from "../Button/Button";
 
 export default function TodoList() {
   const [todos, setTodos] = useState([]);
@@ -35,8 +36,8 @@ export default function TodoList() {
           todos.map((todo) => (
             <Fragment key={todo.todo_id}>
               <p>{todo.description}</p>
-              <button>Edit</button>
-              <button>Delete</button>
+              <Button>Edit</Button>
+              <Button>Delete</Button>
             </Fragment>
           ))}
       </div>
