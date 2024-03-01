@@ -18,6 +18,7 @@ app.use(express.json());
 app.get("/todos", async (req, res) => {
   try {
     const allToDos = await pool.query(`SELECT * FROM todo;`);
+    console.log(allToDos);
     res.json(allToDos.rows);
   } catch (error) {
     console.error(error.message);
