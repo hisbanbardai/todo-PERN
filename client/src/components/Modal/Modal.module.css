@@ -1,0 +1,31 @@
+.editModal {
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 100px;
+  border: none;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.editInput {
+  width: 500px;
+  height: 35px;
+}
+
+.formButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.btn {
+  width: 75px;
+  height: 50px;
+  font-size: 18px;
+}
