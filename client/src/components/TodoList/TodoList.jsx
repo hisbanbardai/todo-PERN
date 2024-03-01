@@ -1,11 +1,20 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./TodoList.module.css";
 
 export default function TodoList() {
+  const [todos, setTodos] = useState([]);
+
   async function getTodos() {
     try {
       const response = await fetch(`http://localhost:8081/todos`);
-      console.log(await response.json());
+
+      if (!response.ok) {
+        throw new Error(`Unable to add todo item`);
+      }
+
+      const todoArray = await response.json();
+      console.log(todoArray);
+      setTodos(todoArray);
     } catch (error) {
       console.error(error);
     }
