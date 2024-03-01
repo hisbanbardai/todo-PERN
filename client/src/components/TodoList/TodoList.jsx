@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import styles from "./TodoList.module.css";
 
 export default function TodoList() {
@@ -31,6 +31,14 @@ export default function TodoList() {
         <h2>Description</h2>
         <h2>Edit</h2>
         <h2>Delete</h2>
+        {todos.length > 0 &&
+          todos.map((todo) => (
+            <Fragment key={todo.todo_id}>
+              <p>{todo.description}</p>
+              <button>Edit</button>
+              <button>Delete</button>
+            </Fragment>
+          ))}
       </div>
     </>
   );
