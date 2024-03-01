@@ -10,12 +10,30 @@ export default function TodoList() {
       const response = await fetch(`http://localhost:8081/todos`);
 
       if (!response.ok) {
-        throw new Error(`Unable to add todo item`);
+        throw new Error(`Unable to get todos`);
       }
 
       const todoArray = await response.json();
       console.log(todoArray);
       setTodos(todoArray);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function handleDeleteTodo(todo_id) {
+    try {
+      const response = await fetch(`http://localhost:8081/todos/${todo_id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error(`Unable to delete todo`);
+      }
+
+      setTodos((currToDos) =>
+        currToDos.filter((todo) => todo.todo_id !== todo_id)
+      );
     } catch (error) {
       console.error(error);
     }
@@ -37,7 +55,9 @@ export default function TodoList() {
             <Fragment key={todo.todo_id}>
               <p>{todo.description}</p>
               <Button>Edit</Button>
-              <Button>Delete</Button>
+              <Button onClick={() => handleDeleteTodo(todo.todo_id)}>
+                Delete
+              </Button>
             </Fragment>
           ))}
       </div>
