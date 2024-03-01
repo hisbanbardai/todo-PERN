@@ -1,0 +1,11 @@
+.mainHeading {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.mainContainer {
+  display: grid;
+  grid-template-columns: 400px 200px 200px;
+  justify-content: center;
+  gap: 20px;
+}
