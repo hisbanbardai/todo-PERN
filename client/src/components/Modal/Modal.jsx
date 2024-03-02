@@ -1,31 +1,25 @@
-import { forwardRef, useImperativeHandle, useRef } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Modal.module.css";
 
-const Modal = forwardRef(function ({ props }, ref) {
-  const modal = useRef();
-
-  useImperativeHandle(ref, () => {
-    return {
-      open() {
-        modal.current.showModal();
-      },
-    };
-  });
+const Modal = function ({ todo, onClose }) {
+  const [description, setDescription] = useState(todo?.description);
 
   return (
-    <dialog className={styles.editModal} ref={modal}>
-      <form method="dialog">
+    <div className={`${styles.editModal} `}>
+      <form>
         <div className={styles.modalBody}>
           <h1>Edit Todo</h1>
-          <input type="text" className={styles.editInput} />
+          <input type="text" className={styles.editInput} value={description} />
           <div className={styles.formButtons}>
             <button className={styles.btn}>Edit</button>
-            <button className={styles.btn}>Close</button>
+            <button className={styles.btn} onClick={() => onClose(null)}>
+              Close
+            </button>
           </div>
         </div>
       </form>
-    </dialog>
+    </div>
   );
-});
+};
 
 export default Modal;

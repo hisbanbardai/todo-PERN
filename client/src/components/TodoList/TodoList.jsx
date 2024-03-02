@@ -1,12 +1,11 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import styles from "./TodoList.module.css";
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 
 export default function TodoList() {
   const [todos, setTodos] = useState([]);
-
-  const modalRef = useRef();
+  const [editTodo, setEditTodo] = useState(null);
 
   async function getTodos() {
     try {
@@ -42,8 +41,8 @@ export default function TodoList() {
     }
   }
 
-  function handleEditToDo() {
-    modalRef.current.open();
+  function handleEditToDo(todo) {
+    setEditTodo(todo);
   }
 
   useEffect(() => {
@@ -52,7 +51,7 @@ export default function TodoList() {
 
   return (
     <>
-      <Modal ref={modalRef} />
+      {editTodo && <Modal todo={editTodo} onClose={handleEditToDo} />}
       <h1 className={styles.mainHeading}>List of Todos</h1>
       <div className={styles.mainContainer}>
         <h2>Description</h2>
@@ -62,7 +61,7 @@ export default function TodoList() {
           todos.map((todo) => (
             <Fragment key={todo.todo_id}>
               <p>{todo.description}</p>
-              <Button onClick={handleEditToDo}>Edit</Button>
+              <Button onClick={() => handleEditToDo(todo)}>Edit</Button>
               <Button onClick={() => handleDeleteTodo(todo.todo_id)}>
                 Delete
               </Button>
