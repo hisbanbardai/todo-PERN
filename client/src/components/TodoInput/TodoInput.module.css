@@ -13,6 +13,7 @@
 .inputTodo {
   font-size: 18px;
   width: 400px;
+  padding-left: 10px;
 }
 
 .btnAdd {
