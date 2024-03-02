@@ -31,6 +31,7 @@
 .editInput {
   width: 500px;
   height: 35px;
+  font-size: 18px;
 }
 
 .formButtons {
@@ -43,4 +44,5 @@
   width: 75px;
   height: 50px;
   font-size: 18px;
+  border-radius: 5px;
 }
